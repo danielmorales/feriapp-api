@@ -36,7 +36,7 @@ export async function getProductos(_req,res){
         const productos = await Producto.findAll({
             attributes: ['id_producto','nombre_producto','descripcion_producto'],
             order: [
-                ['id_producto','DESC']
+                ['nombre_producto','ASC']
             ]
         });
         res.json({
