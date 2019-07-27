@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS cuenta
     nombre text NOT NULL CHECK (nombre <> ''),
     apellido text NOT NULL CHECK (apellido <> ''),
     correo_cuenta text NOT NULL CHECK (correo_cuenta <> ''),
-    password_cuenta text NOT NULL CHECK (password_cuenta <> ''),
+    password_cuenta text NOT NULL CHECK (password_cuenta <> '')
+-- RECORDAR PONER LAS COMAS
  --   imagen_cuenta bytea, 
  --   activo_cuenta boolean NOT NULL,
  --   fecha_alta timestamp

@@ -4,27 +4,40 @@ import {sequelize} from '../database/database';
 const Cuenta = sequelize.define('cuenta', {
     id_cuenta:{
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
     },
     nombre:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING,
+        allowNull: false
     },
     apellido:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
     },
     correo_cuenta:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            isEmail:true
+          },
+          unique: {
+              args: true,
+              msg: 'Email address already in use!'
+          }
     },
-    password:{
-        type: Sequelize.TEXT
+    password_cuenta:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
 /*,
-    foto_producto:{
+    imagen_cuenta:{
         type: Sequelize.BLOB('tiny')
     }*/
 },
 {
     timestamps: false,
+  //  createdAt: Sequelize.DATE,
+  //  updatedAt: Sequelize.DATE,
     freezeTableName: true
 });
 
