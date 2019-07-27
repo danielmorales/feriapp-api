@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS cuenta
     apellido text NOT NULL CHECK (apellido <> ''),
     correo_cuenta text NOT NULL CHECK (correo_cuenta <> ''),
     password_cuenta text NOT NULL CHECK (password_cuenta <> ''),
-    imagen_cuenta bytea, 
-    activo_cuenta boolean NOT NULL,
-    fecha_alta timestamp
+ --   imagen_cuenta bytea, 
+ --   activo_cuenta boolean NOT NULL,
+ --   fecha_alta timestamp
 );
 
 -- USUARIO, aquí va el puntaje que tiene acumulado el usuario

@@ -4,14 +4,11 @@ import Puesto from '../models/Puesto';
 export async function getParaContar(_req,res){
     
     try {
-        console.log("PRUEBA");
-        const puestos = await Puesto.findAll({
-            attributes: [[sequelize.fn('COUNT', sequelize.col('id_puesto')), 3]]
-          });
-        console.log(puestos);
-       /* res.json({
-            puestos
-        });*/
+        console.log("PRUEBA PARA CONTAR PUESTOS EN TOTAL");
+        const puestos = await Puesto.count();
+        res.json({
+               puestos
+        });
         
     } catch (error) {
         console.log(error);
