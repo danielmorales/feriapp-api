@@ -2,6 +2,8 @@ import express, {json} from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
+const config = require('./config');
+
 //Importing router
 import productosRoutes from './routes/producto';
 import puestosRoutes from './routes/puesto';
@@ -13,7 +15,9 @@ import cuentaRoutes from './routes/cuenta';
 //initialization
 const app = express();
 
-//Middlewares
+// Middlewares
+// Token
+app.set('superSecret', config.secret);
 // Para mostrar por consola lo que va llegando
 app.use(morgan('dev'));
 // Body parser

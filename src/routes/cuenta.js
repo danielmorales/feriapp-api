@@ -1,10 +1,11 @@
 import { Router } from 'express';
 const router = Router();
 
-import {createCuenta} from "../controllers/cuenta.controller";
+import {createCuenta, login} from "../controllers/cuenta.controller";
 
-//    api/producto/
+//    api/cuenta/
 router.post('/', createCuenta);
+router.post('/login',login);
 
 
 export default router;

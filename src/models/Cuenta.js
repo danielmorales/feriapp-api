@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 import {sequelize} from '../database/database';
 
+
 const Cuenta = sequelize.define('cuenta', {
     id_cuenta:{
         type: Sequelize.INTEGER,
