@@ -104,19 +104,24 @@ export async function updateProducto(req,res){
         const { id } = req.params;
         const { nombre_producto, descripcion_producto } = req.body;
         const productos = await Producto.findAll({
-            attributes: ['id_producto','nombre_producto','descripcion_producto'],
+        //    attributes: ['id_producto','nombre_producto','descripcion_producto'],
             where: {
                 id_producto: id
             }
         });
+        console.log('CONSOLE LOG 1 DE PRODUCTOS ENCONTRADOS', productos);
         if (productos.length > 0){
             productos.forEach(async producto=>{
+                console.log('CONSOLE LOG 2 DE PRODUCTO EN FOR DE PRODUCTOS', producto);
                 await producto.update({
                     nombre_producto,
                     descripcion_producto
                 });
+                console.log('CONSOLE LOG 4 DE PRODUCTO FUERA DE FOR DE PRODUCTOS', producto);
             })
         }
+        console.log('CONSOLE LOG 4: PRODUCTOS QUE ENCONTRE PARA ACTUALIZAR DESPUESS DEL UPDATE', productos);
+        
 
         return res.json({
             message: 'Producto updated succesfully',

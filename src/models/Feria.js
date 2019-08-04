@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import {db} from '../database/database';
 
 import Puesto from './Puesto';
 
-const Feria = sequelize.define('feria', {
+const Feria = db.define('feria', {
     id_feria:{
         type: Sequelize.INTEGER,
         primaryKey: true

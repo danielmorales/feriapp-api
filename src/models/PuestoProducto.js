@@ -1,10 +1,10 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import {db} from '../database/database';
 import Producto from './Producto';
 import Puesto from './Puesto';
 
 
-const PuestoProducto = sequelize.define('puestoproducto', {
+const PuestoProducto = db.define('puestoproducto', {
     id_puesto_producto:{
         type: Sequelize.INTEGER,
         primaryKey: true

@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import {db} from '../database/database';
 
 
-const Producto = sequelize.define('producto', {
+const Producto = db.define('producto', {
     id_producto:{
         type: Sequelize.INTEGER,
         primaryKey: true

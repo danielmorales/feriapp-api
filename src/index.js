@@ -1,8 +1,10 @@
 import app from './app';
+// Importo la configuración del puerto
+const config = require('./config/config')
 
 async function main(){
-    await app.listen(4000);
-    console.log('Server on port 4000');
+    await app.listen(config.port);
+    console.log('Server on port: ', config.port);
 };
 
 main();

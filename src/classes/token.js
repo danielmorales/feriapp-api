@@ -1,31 +1,29 @@
 import jwt from 'jsonwebtoken';
 
-export default class Token {
-    
-    seed = "este-es-el-seed-secreto-de-mi-app";
-    caducidad = '30d';
+// Importo la configuración de la palabra del token
+const config = require('../config/config')
 
-    constructor(){}
+export function getJwtToken(payload){
 
-    static getJwtToken(payload){
-        return jwt.sign({
-            usuario: payload
-        }, this.seed, {expiresIn: this.caducidad});
-    }
+    const caducidad = '30d';
+ 
+    return jwt.sign({
+        usuario: payload
+    }, config.secret, {expiresIn: caducidad});
+}
 
-    static comprobarToken(userToken){
+export function comprobarToken(userToken){
 
-        return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
 
-            jwt.verify(userToken, this.seed, (err, decoded) =>{
-                if(err){
-                    //no confiar
-                    reject();
-                }else{
-                    //token valido
-                    resolve(decoded);
-                }
-            })
-        });
-    }
-};
+        jwt.verify(userToken, config.secret, (err, decoded) =>{
+            if(err){
+                //no confiar
+                reject();
+            }else{
+                //token valido
+                resolve(decoded);
+            }
+        })
+    });
+}
