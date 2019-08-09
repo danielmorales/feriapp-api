@@ -2,17 +2,10 @@ import Sequelize from 'sequelize';
 import {db} from '../database/database';
 import DetalleListaCompras from './DetalleListaCompras';
 
-
-const Producto = db.define('producto', {
-    id_producto:{
+const ListaCompras = db.define('listacompras', {
+    id_listacompras: {
         type: Sequelize.INTEGER,
         primaryKey: true
-    },
-    nombre_producto:{
-        type: Sequelize.STRING(60)
-    },
-    descripcion_producto:{
-        type: Sequelize.STRING(60)
     },
     created_at: {
         type: 'TIMESTAMP',
@@ -24,17 +17,15 @@ const Producto = db.define('producto', {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
     }
-/*,
-    foto_producto:{
-        type: Sequelize.BLOB('tiny')
-    }*/
 },
 {
     timestamps: false,
     freezeTableName: true
 });
 
-Producto.hasMany(DetalleListaCompras, { foreignKey: 'fk_id_producto', sourceKey: 'id_producto' });
-DetalleListaCompras.belongsTo(Producto, { foreignKey: 'fk_id_producto', targetKey: 'id_producto' });
 
-export default Producto;
+ListaCompras.hasMany(DetalleListaCompras, { foreignKey: 'fk_id_listacompras', sourceKey: 'id_listacompras' });
+DetalleListaCompras.belongsTo(ListaCompras, { foreignKey: 'fk_id_listacompras', targetKey: 'id_listacompras' });
+// AGREGAR RELACION DETALLE LISTA DE COMPRAS CON PRODUCTOS
+
+export default ListaCompras;

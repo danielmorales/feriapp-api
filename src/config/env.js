@@ -1,5 +1,5 @@
 const env = {
-    database: 'sync',
+    database: 'prueba5',
     username: 'postgres',
     password: 'postgres',
     host: 'localhost',

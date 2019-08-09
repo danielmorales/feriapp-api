@@ -5,15 +5,18 @@ import Puesto from './Puesto';
 
 
 const PuestoProducto = db.define('puestoproducto', {
-    id_puesto_producto:{
-        type: Sequelize.INTEGER,
-        primaryKey: true
-    },
-    fk_id_puesto:{
+    precio: {
         type: Sequelize.INTEGER
     },
-    fk_id_producto:{
-        type: Sequelize.INTEGER
+    created_at: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },
+    updated_at: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     }
 },
 {

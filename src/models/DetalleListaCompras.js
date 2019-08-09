@@ -1,21 +1,11 @@
 import Sequelize from 'sequelize';
 import {db} from '../database/database';
 
-import Puesto from './Puesto';
 
-const Feria = db.define('feria', {
-    id_feria:{
+const DetalleListaCompras = db.define('detallelistacompras', {
+    id_detallelistacompras: {
         type: Sequelize.INTEGER,
         primaryKey: true
-    },
-    geo_feria:{
-        type: Sequelize.STRING(30)
-    },
-    nombre_feria:{
-        type: Sequelize.STRING(60)
-    },
-    descripcion_feria:{
-        type: Sequelize.STRING
     },
     created_at: {
         type: 'TIMESTAMP',
@@ -33,7 +23,4 @@ const Feria = db.define('feria', {
     freezeTableName: true
 });
 
-Feria.hasMany(Puesto, { foreignKey: 'fk_id_feria', sourceKey: 'id_feria' });
-Puesto.belongsTo(Feria, { foreignKey: 'fk_id_feria', targetKey: 'id_feria' });
-
-export default Feria;
+export default DetalleListaCompras;

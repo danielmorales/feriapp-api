@@ -1,7 +1,6 @@
 import express, {json} from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken';
 
 const config = require('./config/config');
 
