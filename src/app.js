@@ -1,6 +1,7 @@
 import express, {json} from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
 
 const config = require('./config/config');
 
@@ -11,6 +12,8 @@ import puestoProductoRoutes from './routes/puesto_producto';
 import feriaRoutes from './routes/feria';
 import contarpuestoRoutes from './routes/contarpuesto';
 import cuentaRoutes from './routes/cuenta';
+// nuevas rutas
+import comentarioPuestoRoutes from './routes/comentariopuesto';
 
 // Prueba para sincronizar la base de datos y crear tablas a través de los modelos
  import {db} from './database/database'
@@ -41,6 +44,9 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/api/cuenta', cuentaRoutes);
+
+// Ruta para subir archivos
+app.use( fileUpload() );
 // Middleware de autenticación con token
 /*
 app.use(function(req, res, next) {
@@ -73,6 +79,9 @@ app.use('/api/producto', productosRoutes);
 app.use('/api/puesto', puestosRoutes);
 app.use('/api/puesto-producto', puestoProductoRoutes);
 app.use('/api/feria', feriaRoutes);
+
+// Rutas nuevas
+app.use('/api/comentariopuesto', comentarioPuestoRoutes);
 
 
 

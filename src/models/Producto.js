@@ -6,7 +6,9 @@ import DetalleListaCompras from './DetalleListaCompras';
 const Producto = db.define('producto', {
     id_producto:{
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     nombre_producto:{
         type: Sequelize.STRING(60)

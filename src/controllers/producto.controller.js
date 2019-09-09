@@ -1,4 +1,7 @@
 import Producto from '../models/Producto';
+import {guardarImagenTemporal,generarNombreUnico,crearCarpetaUsuario} from '../classes/file-system'
+// Importo las funciones que trabajan con el token
+const FileSystem = require('../classes/file-system');
 
 export async function createProducto(req,res) {
     //console.log(req.body);
@@ -135,5 +138,50 @@ export async function updateProducto(req,res){
             data: {}
         });
     };
+
+}
+
+export async function updateFoto(req,res){
+
+    if(!req.files){
+        return res.status(400).json({
+            ok: false,
+            message: 'No se subio ningun archivo'
+        });
+    }
+
+    if(!req.files.image){
+        return res.status(400).json({
+            ok: false,
+            message: 'No se subio ningun archivo - image'
+        });
+    }
+
+    const file = {
+        name: req.files.image.name,
+        data: req.files.image.data,
+        encoding: req.files.image.encoding,
+        tempFilePath: req.files.image.tempFilePath,
+        truncated: req.files.image.truncated,
+        mimetype: req.files.image.mimetype,
+        mv: req.files.image.mv
+    };
+    console.log('MUESTRO EL CONTENIDO DEL FILE',file);
+
+    if (!file.mimetype.includes('image')){
+        return res.status(400).json({
+            ok: false,
+            message: 'Lo que subio no es una imagen'
+        });
+    }
+    // Aqui llamo a las funciones de file-system.js de la carpeta classes
+    var fileSystem = await FileSystem.guardarImagenTemporal(file, req.usuario.id_cuenta);
+    
+    res.json({
+        ok: true,
+        message: 'Casi se sube',
+        file: file.mimetype
+
+    });
 
 }

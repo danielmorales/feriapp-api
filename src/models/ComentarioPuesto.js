@@ -5,7 +5,9 @@ import {db} from '../database/database';
 const ComentarioPuesto = db.define('comentariopuesto', {
     id_comentariopuesto: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     texto_comentariopuesto: {
         type: Sequelize.TEXT

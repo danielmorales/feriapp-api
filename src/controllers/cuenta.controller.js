@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 // Importo las funciones que trabajan con el token
 const configToken = require('../classes/token');
 
-
+// QUITAR DATOS IMPORTANTES EN LA RESPUESTA JSON
 export async function createCuenta(req,res) {
     const {
         nombre,
@@ -104,6 +104,7 @@ export async function login(req,res){
     }
 }
 
+// La función pasa primero por verificarToken
 export async function updateCuenta(req, res){
 
     const user = {
@@ -124,6 +125,7 @@ export async function updateCuenta(req, res){
             cuenta.forEach(async cuenta=>{
                 console.log('CONSOLE LOG 2 DE PRODUCTO EN FOR DE PRODUCTOS', cuenta);
                 await cuenta.update({
+                    // Aqui se puede cambiar todo por user.algo, ya que lo declaro arriba pero nunca lo ocupo
                     nombre: req.body.nombre || req.usuario.nombre,
                     apellido: req.body.apellido || req.usuario.apellido,
                     correo_cuenta: req.body.correo_cuenta || req.usuario.correo_cuenta,
@@ -174,4 +176,30 @@ export async function updateCuenta(req, res){
         });
     };
  
+}
+
+// Funcion sin token
+// Quitar información importante, mostrar solo los datos necesarios, como el nombre
+export async function getOneCuenta(req, res){
+    try {
+      //  const {id} = req.params;
+        const cuenta = await Cuenta.findOne({
+            attributes: ['nombre','apellido'],
+            where: {
+                id_cuenta: req.body.id_cuenta
+            }
+        });
+
+        res.json({
+            data: cuenta
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'No se pudo obtener los datos de la cuenta',
+            data: {}
+        });
+    }
+    
 }

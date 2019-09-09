@@ -6,7 +6,9 @@ import ComentarioPuesto from './ComentarioPuesto';
 const Puesto = db.define('puesto', {
     id_puesto:{
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     nombre_puesto:{
         type: Sequelize.STRING(60)

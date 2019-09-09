@@ -5,7 +5,9 @@ import DetalleListaCompras from './DetalleListaCompras';
 const ListaCompras = db.define('listacompras', {
     id_listacompras: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     created_at: {
         type: 'TIMESTAMP',
@@ -24,7 +26,7 @@ const ListaCompras = db.define('listacompras', {
 });
 
 
-ListaCompras.hasMany(DetalleListaCompras, { foreignKey: 'fk_id_listacompras', sourceKey: 'id_listacompras' });
+ListaCompras.hasMany(DetalleListaCompras, { foreignKey: 'fk_id_listacompras', sourceKey: 'id_listacompras', onDelete: 'cascade' });
 DetalleListaCompras.belongsTo(ListaCompras, { foreignKey: 'fk_id_listacompras', targetKey: 'id_listacompras' });
 // AGREGAR RELACION DETALLE LISTA DE COMPRAS CON PRODUCTOS
 

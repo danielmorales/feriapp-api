@@ -5,7 +5,9 @@ import {db} from '../database/database';
 const DetalleListaCompras = db.define('detallelistacompras', {
     id_detallelistacompras: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     created_at: {
         type: 'TIMESTAMP',

@@ -1,19 +1,26 @@
 import PuestoProducto from '../models/PuestoProducto';
 
+
+// Falta agregar el Precio en crear, obtener y eliminar
+// Falta actualizar Producto en Puesto
+
+
 export async function createPuestoProducto(req,res) {
     //console.log(req.body);
     const {
         fk_id_puesto,
-        fk_id_producto
+        fk_id_producto,
+        precio
     } = req.body;
 
     try {
         
         let newPuestoProducto = await PuestoProducto.create({
             fk_id_puesto,
-            fk_id_producto
+            fk_id_producto,
+            precio
         },{
-            fields:['fk_id_puesto', 'fk_id_producto']
+            fields:['fk_id_puesto', 'fk_id_producto','precio']
         });
         if (newPuestoProducto) {
              res.json({
@@ -25,7 +32,7 @@ export async function createPuestoProducto(req,res) {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            message: 'No se pudo agregar el Prouducto al Puesto',
+            message: 'No se pudo agregar el Producto al Puesto',
             data: {}
         });
     }

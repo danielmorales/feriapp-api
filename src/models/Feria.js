@@ -6,7 +6,9 @@ import Puesto from './Puesto';
 const Feria = db.define('feria', {
     id_feria:{
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
     geo_feria:{
         type: Sequelize.STRING(30)
