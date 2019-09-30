@@ -1,5 +1,8 @@
 import Producto from '../models/Producto';
-import {guardarImagenTemporal,generarNombreUnico,crearCarpetaUsuario} from '../classes/file-system'
+import {guardarImagenTemporal, guardarImagenBD} from '../classes/file-system'
+
+import path from 'path';
+import fs from 'fs';
 // Importo las funciones que trabajan con el token
 const FileSystem = require('../classes/file-system');
 
@@ -9,13 +12,22 @@ export async function createProducto(req,res) {
         nombre_producto,
         descripcion_producto
     } = req.body;
+    
+    // Esto es para subir la imagen
+    const imagenes = FileSystem.imagenesDeTempHaciaPost(req.usuario.id_cuenta);
+    const img_producto = imagenes[0];
+    console.log('IMPRIMO LA VARIABLE IMAGENES', imagenes);
+    console.log('IMPRIMO LA PRIMERA POSICION DE IMAGENES', img_producto);
+    // body.img_producto = imagenes;
+    
 
     try {
         let newProducto = await Producto.create({
             nombre_producto,
-            descripcion_producto
+            descripcion_producto,
+            img_producto
         },{
-            fields:['nombre_producto', 'descripcion_producto']
+            fields:['nombre_producto', 'descripcion_producto','img_producto']
         });
         if (newProducto) {
              res.json({
@@ -166,7 +178,7 @@ export async function updateFoto(req,res){
         mimetype: req.files.image.mimetype,
         mv: req.files.image.mv
     };
-    console.log('MUESTRO EL CONTENIDO DEL FILE',file);
+    console.log('var file',file);
 
     if (!file.mimetype.includes('image')){
         return res.status(400).json({
@@ -174,14 +186,25 @@ export async function updateFoto(req,res){
             message: 'Lo que subio no es una imagen'
         });
     }
+    // Esta funcion guarda la imagen en la base de datos en un formato binario
+    // guardarImagenBD(req.usuario.id_cuenta);
+
     // Aqui llamo a las funciones de file-system.js de la carpeta classes
-    var fileSystem = await FileSystem.guardarImagenTemporal(file, req.usuario.id_cuenta);
+    await guardarImagenTemporal(file, req.usuario.id_cuenta);
     
     res.json({
         ok: true,
-        message: 'Casi se sube',
+        message: 'Se guardó en la carpeta uploads',
         file: file.mimetype
-
     });
 
+}
+
+export async function rutaFoto(req,res){
+    const idProducto = req.params.id_producto;
+    const img = req.params.img;
+
+    const pathFoto = FileSystem.getFotoUrl(idProducto, img);
+    
+    res.sendFile(pathFoto);
 }

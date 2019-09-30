@@ -25,11 +25,10 @@ const Producto = db.define('producto', {
         type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
+    },
+    img_producto:{
+        type: Sequelize.STRING(60)
     }
-/*,
-    foto_producto:{
-        type: Sequelize.BLOB('tiny')
-    }*/
 },
 {
     timestamps: false,

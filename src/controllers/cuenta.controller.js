@@ -179,7 +179,8 @@ export async function updateCuenta(req, res){
 }
 
 // Funcion sin token
-// Quitar información importante, mostrar solo los datos necesarios, como el nombre
+// Quitar información importante, mostrar solo los datos necesarios
+// Mostrar id, nombre, email, avatar
 export async function getOneCuenta(req, res){
     try {
       //  const {id} = req.params;
