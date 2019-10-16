@@ -19,15 +19,16 @@ export async function crearComentario(req, res){
         });
         if (newComentarioPuesto) {
              res.json({
+                ok: true,
                 message: 'Comentario del puesto creado',
-                data: newComentarioPuesto
+                post: newComentarioPuesto
             });
         }
         
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            message: 'No se pudo actualizar la cuenta',
+            message: 'No se pudo realizar el comentario',
             data: {}
         });
     }
@@ -40,7 +41,7 @@ export async function updateComentario(req, res){
     const comentario = {
         texto_comentariopuesto: req.body.texto_comentariopuesto,
         id_comentariopuesto: req.body.id_comentariopuesto
-    }
+    };
 
     try {
         // Buscar todos los comentarios de una cierta id, extraida desde TOKEN
@@ -52,7 +53,7 @@ export async function updateComentario(req, res){
         });
 
         if (comentarios.length > 0){
-            comentarios.forEach(async comentarios=>{
+            comentarios.forEach( async comentarios=>{
                 console.log('1111111: Aqui muestro los comentarios hechos por el fk_id_cuenta', comentarios);
                 await comentarios.update({
                     where: {
@@ -62,7 +63,7 @@ export async function updateComentario(req, res){
                     updated_at: new Date()
                 });
                 console.log('2222222: Muestro comentarios', comentarios);
-            })
+            });
         }
         console.log('333333: Muestro comentarios', comentarios);
 
@@ -77,7 +78,7 @@ export async function updateComentario(req, res){
             message: 'No se pudo actualizar el comentario',
             data: {}
         });
-    };
+    }
  
 }
 // Eliminar solo debe ser realizado por el usuario que hizo el post
@@ -89,10 +90,11 @@ export async function getComentariosbyPuesto(req,res){
     // Lógica para paginado
     // Creo una constante para la pagina, la que se lee en la query de la url
     const pagina = Number(req.query.pagina) || 1;
+    const fk_id_puesto = Number(req.query.puesto);
     var skip = pagina - 1;
     skip = skip * 10;
 
-    const { fk_id_puesto } = req.body;
+    //const { fk_id_puesto } = req.body;
 
     try {
         const comentariopuesto = await ComentarioPuesto.findAll({

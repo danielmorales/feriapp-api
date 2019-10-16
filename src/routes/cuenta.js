@@ -9,6 +9,6 @@ router.post('/', createCuenta);
 router.post('/login',login);
 router.post('/update', verificaToken, updateCuenta);
 
-router.get('/', getOneCuenta);
+router.get('/', verificaToken, getOneCuenta);
 
 export default router;

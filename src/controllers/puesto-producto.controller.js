@@ -43,7 +43,7 @@ export async function getProductosbyPuesto(req,res){
     const {fk_id_puesto} = req.params;
     try {
         const ProductosPuesto = await PuestoProducto.findAll({
-            attributes: ['fk_id_producto'],
+            attributes: ['fk_id_producto', 'precio', 'updated_at'],
             where: {fk_id_puesto}
         });
         res.json({ProductosPuesto});
@@ -77,5 +77,5 @@ export async function deletePuestoProducto(req,res){
             message: 'No se pudo eliminar el Puesto',
             data: {}
         });
-    };
+    }
 }

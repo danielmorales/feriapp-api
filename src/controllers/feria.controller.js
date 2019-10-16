@@ -42,7 +42,8 @@ export async function getFerias(_req,res){
             ]
         });
         res.json({
-            data: ferias
+            ok: true,
+            ferias: ferias
         });
         
     } catch (error) {

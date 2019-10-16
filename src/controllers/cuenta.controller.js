@@ -13,7 +13,7 @@ export async function createCuenta(req,res) {
         password_cuenta
     } = req.body;
 
-    console.log(req.body);
+  //  console.log(req.body);
 
     try {
         let cuenta = await Cuenta.create({
@@ -43,7 +43,8 @@ export async function createCuenta(req,res) {
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        res.json({
+            ok: false,
             message: 'No se pudo crear la cuenta',
             data: {}
         });
@@ -183,16 +184,18 @@ export async function updateCuenta(req, res){
 // Mostrar id, nombre, email, avatar
 export async function getOneCuenta(req, res){
     try {
+        console.log('el id de la cuenta',req.usuario.id_cuenta);
       //  const {id} = req.params;
         const cuenta = await Cuenta.findOne({
-            attributes: ['nombre','apellido'],
+            attributes: ['nombre','apellido', 'correo_cuenta'],
             where: {
-                id_cuenta: req.body.id_cuenta
+                id_cuenta: req.usuario.id_cuenta
             }
         });
 
         res.json({
-            data: cuenta
+            ok: true,
+            cuenta: cuenta
         });
         
     } catch (error) {
