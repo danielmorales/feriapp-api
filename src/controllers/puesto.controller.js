@@ -1,4 +1,5 @@
 import Puesto from '../models/Puesto';
+import Producto from '../models/Producto';
 
 export async function createPuesto(req,res) {
     //console.log(req.body);
@@ -60,9 +61,7 @@ export async function getOnePuesto(req,res){
     try {
         const {id} = req.params;
         const puesto = await Puesto.findOne({
-            where: {
-                id_puesto: id
-            },
+            where: {id_puesto: id},
             attributes: ['nombre_puesto', 'descripcion_puesto', 'fk_id_feria']
         });
 
@@ -143,7 +142,8 @@ export async function getPuestosbyFeria(req,res){
     try {
         const puestos = await Puesto.findAll({
             attributes: ['id_puesto', 'nombre_puesto', 'descripcion_puesto', 'fk_id_feria'],
-            where: {fk_id_feria}
+            where: {fk_id_feria},
+            include: [{model: Producto}]
         });
         res.json({puestos});
 

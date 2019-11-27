@@ -24,16 +24,7 @@ const PuestoProducto = db.define('puestoproducto', {
     freezeTableName: true
 });
 
-Producto.belongsToMany(Puesto, {
-   // as: [Relationship],
-    through: PuestoProducto, //this can be string or a model,
-    foreignKey: 'fk_id_producto'
-});
-
-Puesto.belongsToMany(Producto, {
-  //  as: [Relationship2],
-    through: PuestoProducto,
-    foreignKey: 'fk_id_puesto'
-});
+Producto.belongsToMany(Puesto, {through: PuestoProducto, foreignKey: 'fk_id_producto'});
+Puesto.belongsToMany(Producto, {through: PuestoProducto, foreignKey: 'fk_id_puesto' });
 
 export default PuestoProducto;

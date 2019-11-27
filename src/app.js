@@ -15,9 +15,11 @@ import contarpuestoRoutes from './routes/contarpuesto';
 import cuentaRoutes from './routes/cuenta';
 // nuevas rutas
 import comentarioPuestoRoutes from './routes/comentariopuesto';
+import listaComprasRoutes from './routes/listacompras';
+import detalleListaComprasRoutes from './routes/detallelistacompras';
 
 // Prueba para sincronizar la base de datos y crear tablas a través de los modelos
- import {db} from './database/database'
+ import {db} from './database/database';
  db.sync().then(()=> console.log('DB CONECTADA')).catch((error)=> console.log(error));
 
 //initialization
@@ -86,6 +88,8 @@ app.use('/api/feria', feriaRoutes);
 
 // Rutas nuevas
 app.use('/api/comentariopuesto', comentarioPuestoRoutes);
+app.use('/api/listacompras', listaComprasRoutes);
+app.use('/api/detallelistacompras', detalleListaComprasRoutes);
 
 
 

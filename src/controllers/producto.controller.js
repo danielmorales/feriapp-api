@@ -55,14 +55,14 @@ export async function getProductos(_req,res){
             ]
         });
         res.json({
-            data: productos
+            productos: productos
         });
         
     } catch (error) {
         console.log(error);
         res.status(500).json({
             message: 'Algo anda mal',
-            data: {}
+            productos: {}
         });
     }
 }

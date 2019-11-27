@@ -1,4 +1,6 @@
 import PuestoProducto from '../models/PuestoProducto';
+import Producto from '../models/Producto';
+import Puesto from '../models/Puesto';
 
 
 // Falta agregar el Precio en crear, obtener y eliminar
