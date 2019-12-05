@@ -1,5 +1,7 @@
 import Puesto from '../models/Puesto';
 import Producto from '../models/Producto';
+import PuestoProducto from '../models/PuestoProducto';
+import OfertaProducto from '../models/OfertaProducto';
 
 export async function createPuesto(req,res) {
     //console.log(req.body);
@@ -7,15 +9,17 @@ export async function createPuesto(req,res) {
         nombre_puesto,
         descripcion_puesto,
         fk_id_feria,
+        geo_puesto
     } = req.body;
 
     try {
         let newPuesto = await Puesto.create({
             nombre_puesto,
             descripcion_puesto,
-            fk_id_feria
+            fk_id_feria,
+            geo_puesto
         },{
-            fields:['nombre_puesto', 'descripcion_puesto', 'fk_id_feria']
+            fields:['nombre_puesto', 'descripcion_puesto', 'fk_id_feria','geo_puesto']
         });
         if (newPuesto) {
              res.json({
@@ -105,9 +109,9 @@ export async function deletePuesto(req,res){
 export async function updatePuesto(req,res){
     try {
         const { id } = req.params;
-        const { nombre_puesto, descripcion_puesto, fk_id_feria} = req.body;
+        const { nombre_puesto, descripcion_puesto, fk_id_feria, geo_puesto} = req.body;
         const puestos = await Puesto.findAll({
-            attributes: ['id_puesto','nombre_puesto','descripcion_puesto','fk_id_feria'],
+            attributes: ['id_puesto','nombre_puesto','descripcion_puesto','fk_id_feria','geo_puesto'],
             where: {
                 id_puesto: id
             }
@@ -117,7 +121,8 @@ export async function updatePuesto(req,res){
                 await puestos.update({
                     nombre_puesto,
                     descripcion_puesto,
-                    fk_id_feria
+                    fk_id_feria,
+                    geo_puesto
                 });
             })
         }
@@ -141,9 +146,16 @@ export async function getPuestosbyFeria(req,res){
     const { fk_id_feria } = req.params;
     try {
         const puestos = await Puesto.findAll({
-            attributes: ['id_puesto', 'nombre_puesto', 'descripcion_puesto', 'fk_id_feria'],
+            attributes: ['id_puesto', 'nombre_puesto', 'descripcion_puesto', 'fk_id_feria','geo_puesto'],
             where: {fk_id_feria},
-            include: [{model: Producto}]
+            include: [{
+                model: Producto,
+                as: 'producto'
+            },{
+                model: Producto,
+                through: PuestoProducto
+            }]
+            
         });
         res.json({puestos});
 

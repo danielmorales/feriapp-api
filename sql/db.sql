@@ -120,24 +120,28 @@ INSERT INTO permiso_local_cliente(FK_id_cliente)
 
 -- PRODUCTO
 INSERT INTO producto(nombre_producto, descripcion_producto)
-    VALUES('Palta Hass', 'Alimento rico en grasas saludables');
+    VALUES ('Palta Hass', 'Alimento rico en grasas saludables');
 
 INSERT INTO public.producto(nombre_producto, descripcion_producto)
-	VALUES ('Palta Hass', 'Rica en aceites saludables');
+	VALUES ('Nuez', 'Rica en aceites saludables');
 
 INSERT INTO public.producto(nombre_producto, descripcion_producto)
 	VALUES ('Manzana', 'Rica vitaminas');
 
 INSERT INTO public.producto(nombre_producto, descripcion_producto)
-	VALUES ('Limon', 'Rica vitamina C');
-    
+	VALUES ('Limon', 'Rico vitamina C');
 
+INSERT INTO public.producto(nombre_producto, descripcion_producto)
+    VALUES('Platano', 'Alimento rico en potasio');
 
-INSERT INTO producto(nombre_producto, descripcion_producto, foto_producto)
-    VALUES('Platano', 'Alimento rico en potasio','foto_´platano.jpg');
+INSERT INTO public.producto(nombre_producto, descripcion_producto)
+    VALUES('Naranja', 'Mucha vitamina C');
 
-INSERT INTO producto(nombre_producto, descripcion_producto, foto_producto)
-    VALUES('Naranja', 'Mucha vitamina C','foto_naranja.jpg');
+INSERT INTO public.producto(nombre_producto, descripcion_producto)
+    VALUES('Cebolla', 'Rica en antioxidantes');
+
+INSERT INTO public.producto(nombre_producto, descripcion_producto)
+    VALUES('Aji verde', 'Ideal para pebre');
 
 -- FERIA
 INSERT INTO feria(geo_feria, nombre_feria, descripcion_feria)

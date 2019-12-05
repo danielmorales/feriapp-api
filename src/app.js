@@ -17,6 +17,7 @@ import cuentaRoutes from './routes/cuenta';
 import comentarioPuestoRoutes from './routes/comentariopuesto';
 import listaComprasRoutes from './routes/listacompras';
 import detalleListaComprasRoutes from './routes/detallelistacompras';
+import ofertaProductoRoutes from './routes/oferta_producto';
 
 // Prueba para sincronizar la base de datos y crear tablas a través de los modelos
  import {db} from './database/database';
@@ -90,7 +91,7 @@ app.use('/api/feria', feriaRoutes);
 app.use('/api/comentariopuesto', comentarioPuestoRoutes);
 app.use('/api/listacompras', listaComprasRoutes);
 app.use('/api/detallelistacompras', detalleListaComprasRoutes);
-
+app.use('/api/oferta-producto', ofertaProductoRoutes);
 
 
 //routes de prueba

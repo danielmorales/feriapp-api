@@ -31,7 +31,16 @@ const Puesto = db.define('puesto', {
     activo: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-    }/*,
+    },
+    geo_puesto:{
+        type: Sequelize.STRING(30),
+        unique: {
+            arg: true,
+            msg: 'Geo puesto ya registrada'
+        }
+    }
+    /*
+    ,
     fk_id_feria:{
         type: Sequelize.INTEGER
     },
@@ -40,9 +49,6 @@ const Puesto = db.define('puesto', {
     },
     geo_puesto:{
         type: Sequelize.GEOMETRY('POINT')
-    },
-    foto_producto:{
-        type: Sequelize.BLOB('tiny')
     }*/
 },
 {

@@ -69,5 +69,5 @@ export async function deleteListaCompras(req,res){
             message: 'No se pudo eliminar la Lista de Compras',
             data: {}
         });
-    };
+    }
 }

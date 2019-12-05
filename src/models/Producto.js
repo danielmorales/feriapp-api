@@ -11,7 +11,11 @@ const Producto = db.define('producto', {
         autoIncrement: true
     },
     nombre_producto:{
-        type: Sequelize.STRING(60)
+        type: Sequelize.STRING(60),
+        unique: {
+            arg: true,
+            msg: 'Nombre de producto ya registrado'
+        }
     },
     descripcion_producto:{
         type: Sequelize.STRING(60)
