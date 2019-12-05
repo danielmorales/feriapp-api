@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
 import {db} from '../database/database';
 import Producto from './Producto';
-import Puesto from './Puesto';
+import Supermercado from './Supermercado';
 
-const PuestoProducto = db.define('puestoproducto', {
+const SupermercadoProducto = db.define('supermercadoproducto', {
     precio: {
         type: Sequelize.INTEGER,
         defaultValue: 0
@@ -27,7 +27,7 @@ const PuestoProducto = db.define('puestoproducto', {
     freezeTableName: true
 });
 
-Producto.belongsToMany(Puesto, {through: PuestoProducto, foreignKey: 'fk_id_producto'});
-Puesto.belongsToMany(Producto, {through: PuestoProducto, foreignKey: 'fk_id_puesto' });
+Producto.belongsToMany(Supermercado, {through: SupermercadoProducto, foreignKey: 'fk_id_producto'});
+Supermercado.belongsToMany(Producto, {through: SupermercadoProducto, foreignKey: 'fk_id_supermercado' }); 
 
-export default PuestoProducto;
+export default SupermercadoProducto;

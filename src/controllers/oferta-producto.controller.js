@@ -54,6 +54,7 @@ export async function getOfertasbyPuesto(req,res){
     }
 }
 
+// Arreglar, falta especificar iddel puesto e id del producto en el body
 export async function deleteOfertaProducto(req,res){
     try {
         const { id } = req.body;

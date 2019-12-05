@@ -2,7 +2,6 @@ import Sequelize from 'sequelize';
 import {db} from '../database/database';
 import ComentarioPuesto from './ComentarioPuesto';
 
-
 const Puesto = db.define('puesto', {
     id_puesto:{
         type: Sequelize.INTEGER,
@@ -13,7 +12,6 @@ const Puesto = db.define('puesto', {
     nombre_puesto:{
         type: Sequelize.STRING(60)
     },
-    
     descripcion_puesto:{
         type: Sequelize.STRING
 

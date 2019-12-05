@@ -9,7 +9,8 @@ export async function createPuestoProducto(req,res) {
     const {
         fk_id_puesto,
         fk_id_producto,
-        precio
+        precio,
+        kgunidad
     } = req.body;
 
     try {
@@ -17,9 +18,10 @@ export async function createPuestoProducto(req,res) {
         let newPuestoProducto = await PuestoProducto.create({
             fk_id_puesto,
             fk_id_producto,
-            precio
+            precio,
+            kgunidad
         },{
-            fields:['fk_id_puesto', 'fk_id_producto','precio']
+            fields:['fk_id_puesto', 'fk_id_producto','precio','kgunidad']
         });
         if (newPuestoProducto) {
              res.json({

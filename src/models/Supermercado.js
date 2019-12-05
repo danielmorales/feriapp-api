@@ -1,15 +1,20 @@
 import Sequelize from 'sequelize';
 import {db} from '../database/database';
-import Producto from './Producto';
-import Puesto from './Puesto';
 
-const PuestoProducto = db.define('puestoproducto', {
-    precio: {
+const Supermercado = db.define('supermercado', {
+    id_supermercado: {
         type: Sequelize.INTEGER,
-        defaultValue: 0
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
-    kgunidad: {
-        type: Sequelize.INTEGER
+    nombre_supermercado:{
+        type: Sequelize.STRING(60),
+        allowNull: false,
+        unique: {
+            arg: true,
+            msg: 'Nombre de supermercado ya registrado'
+        }
     },
     created_at: {
         type: 'TIMESTAMP',
@@ -27,7 +32,4 @@ const PuestoProducto = db.define('puestoproducto', {
     freezeTableName: true
 });
 
-Producto.belongsToMany(Puesto, {through: PuestoProducto, foreignKey: 'fk_id_producto'});
-Puesto.belongsToMany(Producto, {through: PuestoProducto, foreignKey: 'fk_id_puesto' });
-
-export default PuestoProducto;
+export default Supermercado;

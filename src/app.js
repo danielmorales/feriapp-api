@@ -18,6 +18,8 @@ import comentarioPuestoRoutes from './routes/comentariopuesto';
 import listaComprasRoutes from './routes/listacompras';
 import detalleListaComprasRoutes from './routes/detallelistacompras';
 import ofertaProductoRoutes from './routes/oferta_producto';
+import supermercadoRoutes from './routes/supermercado';
+import supermercadoProductoRoutes from './routes/supermercado_producto';
 
 // Prueba para sincronizar la base de datos y crear tablas a través de los modelos
  import {db} from './database/database';
@@ -92,6 +94,8 @@ app.use('/api/comentariopuesto', comentarioPuestoRoutes);
 app.use('/api/listacompras', listaComprasRoutes);
 app.use('/api/detallelistacompras', detalleListaComprasRoutes);
 app.use('/api/oferta-producto', ofertaProductoRoutes);
+app.use('/api/supermercado', supermercadoRoutes);
+app.use('/api/supermercado-producto', supermercadoProductoRoutes);
 
 
 //routes de prueba
