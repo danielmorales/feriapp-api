@@ -27,7 +27,7 @@ const OfertaProducto = db.define('ofertaproducto', {
 });
 
 
-Producto.belongsToMany(Puesto, {through: OfertaProducto, as:'producto', foreignKey: 'fk_id_producto'});
-Puesto.belongsToMany(Producto, {through: OfertaProducto, as:'producto', foreignKey: 'fk_id_puesto' });
+Producto.belongsToMany(Puesto, {through: OfertaProducto, as:'oferta', foreignKey: 'fk_id_producto'});
+Puesto.belongsToMany(Producto, {through: OfertaProducto, as:'oferta', foreignKey: 'fk_id_puesto' });
 
 export default OfertaProducto;

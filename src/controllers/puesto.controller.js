@@ -150,7 +150,7 @@ export async function getPuestosbyFeria(req,res){
             where: {fk_id_feria},
             include: [{
                 model: Producto,
-                as: 'producto'
+                as: 'oferta'
             },{
                 model: Producto,
                 through: PuestoProducto
